@@ -1,4 +1,4 @@
-# terraform-aws-eks-prometheus-node-exporter
+# terraform-aws-eks-kube-state-metrics
 ## Requirements
 
 | Name | Version |
@@ -23,10 +23,10 @@
 | cluster\_identity\_oidc\_issuer | n/a | `any` | n/a | yes |
 | cluster\_identity\_oidc\_issuer\_arn | n/a | `any` | n/a | yes |
 | cluster\_name | Required module inputs | `any` | n/a | yes |
-| enabled | terraform-aws-eks-prometheus-node-exporter | `bool` | n/a | yes |
-| helm\_chart\_name | Helm | `string` | `"prometheus-node-exporter"` | no |
-| helm\_chart\_version | n/a | `string` | `"1.11.0"` | no |
-| helm\_release\_name | n/a | `string` | `"prometheus-node-exporter"` | no |
+| enabled | terraform-aws-eks-kube-state-metrics | `bool` | n/a | yes |
+| helm\_chart\_name | Helm | `string` | `"kube-state-metrics"` | no |
+| helm\_chart\_version | n/a | `string` | `"2.8.0"` | no |
+| helm\_release\_name | n/a | `string` | `"kube-state-metrics"` | no |
 | helm\_repo\_name | n/a | `string` | `"stable"` | no |
 | helm\_repo\_url | n/a | `string` | `"https://kubernetes-charts.storage.googleapis.com"` | no |
 | k8s\_namespace | K8S | `string` | `"kube-system"` | no |
