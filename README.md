@@ -29,21 +29,20 @@ A terraform module to deploy a kube-state-metrics on Amazon EKS cluster.
 | Name | Version |
 |------|---------|
 | helm | ~> 1.2 |
+| kubernetes | n/a |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| cluster\_identity\_oidc\_issuer | n/a | `any` | n/a | yes |
-| cluster\_identity\_oidc\_issuer\_arn | n/a | `any` | n/a | yes |
-| cluster\_name | n/a | `any` | n/a | yes |
-| enabled | n/a | `bool` | n/a | yes |
-| helm\_chart\_name | n/a | `string` | `"kube-state-metrics"` | no |
-| helm\_chart\_version | n/a | `string` | `"2.8.0"` | no |
-| helm\_release\_name | n/a | `string` | `"kube-state-metrics"` | no |
-| helm\_repo\_url | n/a | `string` | `"https://kubernetes-charts.storage.googleapis.com"` | no |
-| k8s\_namespace | n/a | `string` | `"kube-system"` | no |
-| mod\_dependency | n/a | `any` | `null` | no |
+| enabled | Variable indicating whether deployment is enabled | `bool` | `true` | no |
+| helm\_chart\_name | Helm chart name to be installed | `string` | `"kube-state-metrics"` | no |
+| helm\_chart\_version | Version of the Helm chart | `string` | `"2.8.0"` | no |
+| helm\_release\_name | Helm release name | `string` | `"kube-state-metrics"` | no |
+| helm\_repo\_url | Helm repository | `string` | `"https://kubernetes-charts.storage.googleapis.com"` | no |
+| k8s\_namespace | The K8s namespace in which the kube-state-metrics service account has been created | `string` | `"kube-system"` | no |
+| mod\_dependency | Dependence variable binds all AWS resources allocated by this module, dependent modules reference this variable | `bool` | `null` | no |
+| settings | Additional settings which will be passed to the Helm chart values, see https://hub.helm.sh/charts/stable/kube-state-metrics | `map(any)` | `{}` | no |
 
 ## Outputs
 
