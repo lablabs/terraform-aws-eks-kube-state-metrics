@@ -29,7 +29,7 @@ Check out these related projects.
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.12.26, < 0.15.0 |
+| terraform | >= 0.12.26, < 0.14.0 |
 | aws | >= 2.0, < 4.0 |
 | helm | >= 1.0, < 1.4.0 |
 | local | ~> 1.2 |
