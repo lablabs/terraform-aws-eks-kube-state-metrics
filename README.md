@@ -29,18 +29,21 @@ Check out these related projects.
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.12.26, < 0.14.0 |
-| aws | >= 2.0, < 4.0 |
-| helm | >= 1.0, < 1.4.0 |
-| local | ~> 1.2 |
-| null | ~> 2.0 |
+| terraform | >= 0.13 |
+| aws | >= 2.0 |
+| helm | >= 1.0 |
+| kubernetes | >= 1.10 |
 
-## Providers
+## Modules
 
-| Name | Version |
-|------|---------|
-| helm | >= 1.0, < 1.4.0 |
-| kubernetes | n/a |
+No Modules.
+
+## Resources
+
+| Name |
+|------|
+| [helm_release](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) |
+| [kubernetes_namespace](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/namespace) |
 
 ## Inputs
 
@@ -48,9 +51,9 @@ Check out these related projects.
 |------|-------------|------|---------|:--------:|
 | enabled | Variable indicating whether deployment is enabled | `bool` | `true` | no |
 | helm\_chart\_name | Helm chart name to be installed | `string` | `"kube-state-metrics"` | no |
-| helm\_chart\_version | Version of the Helm chart | `string` | `"2.9.1"` | no |
+| helm\_chart\_version | Version of the Helm chart | `string` | `"1.2.3"` | no |
 | helm\_release\_name | Helm release name | `string` | `"kube-state-metrics"` | no |
-| helm\_repo\_url | Helm repository | `string` | `"https://charts.helm.sh/stable/"` | no |
+| helm\_repo\_url | Helm repository | `string` | `"https://charts.bitnami.com/bitnami"` | no |
 | k8s\_namespace | The K8s namespace in which the kube-state-metrics service account has been created | `string` | `"kube-system"` | no |
 | mod\_dependency | Dependence variable binds all AWS resources allocated by this module, dependent modules reference this variable | `bool` | `null` | no |
 | settings | Additional settings which will be passed to the Helm chart values, see https://hub.helm.sh/charts/stable/kube-state-metrics | `map(any)` | `{}` | no |
@@ -58,7 +61,6 @@ Check out these related projects.
 ## Outputs
 
 No output.
-
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## Contributing and reporting issues
