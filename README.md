@@ -51,9 +51,9 @@ No Modules.
 |------|-------------|------|---------|:--------:|
 | enabled | Variable indicating whether deployment is enabled | `bool` | `true` | no |
 | helm\_chart\_name | Helm chart name to be installed | `string` | `"kube-state-metrics"` | no |
-| helm\_chart\_version | Version of the Helm chart | `string` | `"2.9.1"` | no |
+| helm\_chart\_version | Version of the Helm chart | `string` | `"1.2.3"` | no |
 | helm\_release\_name | Helm release name | `string` | `"kube-state-metrics"` | no |
-| helm\_repo\_url | Helm repository | `string` | `"https://charts.helm.sh/stable/"` | no |
+| helm\_repo\_url | Helm repository | `string` | `"https://charts.bitnami.com/bitnami"` | no |
 | k8s\_namespace | The K8s namespace in which the kube-state-metrics service account has been created | `string` | `"kube-system"` | no |
 | mod\_dependency | Dependence variable binds all AWS resources allocated by this module, dependent modules reference this variable | `bool` | `null` | no |
 | settings | Additional settings which will be passed to the Helm chart values, see https://hub.helm.sh/charts/stable/kube-state-metrics | `map(any)` | `{}` | no |
