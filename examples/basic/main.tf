@@ -1,6 +1,6 @@
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "3.6.0"
+  version = "3.11.0"
 
   name               = "kube-state-metrics-vpc"
   cidr               = "10.0.0.0/16"
@@ -11,7 +11,7 @@ module "vpc" {
 
 module "eks_cluster" {
   source  = "cloudposse/eks-cluster/aws"
-  version = "0.43.2"
+  version = "0.44.0"
 
   region     = "eu-central-1"
   subnet_ids = module.vpc.public_subnets
@@ -21,7 +21,7 @@ module "eks_cluster" {
 
 module "eks_node_group" {
   source  = "cloudposse/eks-node-group/aws"
-  version = "0.25.0"
+  version = "2.4.0"
 
   cluster_name   = "kube-state-metrics"
   instance_types = ["t3.medium"]
@@ -32,6 +32,55 @@ module "eks_node_group" {
   depends_on     = [module.eks_cluster.kubernetes_config_map_id]
 }
 
-module "kube_state_metrics" {
+module "kube_state_metrics_disabled" {
   source = "../../"
+
+  enabled = false
+}
+
+module "kube_state_metrics_helm" {
+  source = "../../"
+
+  enabled           = true
+  argo_enabled      = false
+  argo_helm_enabled = false
+
+  helm_release_name = "kube-state-metrics"
+  namespace         = "kube-state-metrics"
+
+  helm_timeout = 240
+  helm_wait    = true
+}
+
+module "kube_state_metrics_argo_kubernetes" {
+  source = "../../"
+
+  enabled           = true
+  argo_enabled      = true
+  argo_helm_enabled = false
+
+  helm_release_name = "kube-state-metrics-argo-kubernetes"
+  namespace         = "kube-state-metrics-argo-kubernetes"
+
+  argo_sync_policy = {
+    "automated" : {}
+    "syncOptions" = ["CreateNamespace=true"]
+  }
+}
+
+module "kube_state_metrics_argo_helm" {
+  source = "../../"
+
+  enabled           = true
+  argo_enabled      = true
+  argo_helm_enabled = true
+
+  helm_release_name = "kube-state-metrics-argo-helm"
+  namespace         = "kube-state-metrics-argo-helm"
+
+  argo_namespace = "argo"
+  argo_sync_policy = {
+    "automated" : {}
+    "syncOptions" = ["CreateNamespace=true"]
+  }
 }
