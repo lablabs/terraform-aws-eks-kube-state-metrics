@@ -1,37 +1,21 @@
 /**
- * # AWS EKS Universal Addon Terraform module
+ * # AWS EKS kube state metrics Terraform module
  *
- * A Terraform module to deploy the universal addon on Amazon EKS cluster.
+ * A terraform module to deploy a [kube-state-metrics](https://github.com/kubernetes/kube-state-metrics) on Amazon EKS cluster.
  *
- * [![Terraform validate](https://github.com/lablabs/terraform-aws-eks-universal-addon/actions/workflows/validate.yaml/badge.svg)](https://github.com/lablabs/terraform-aws-eks-universal-addon/actions/workflows/validate.yaml)
- * [![pre-commit](https://github.com/lablabs/terraform-aws-eks-universal-addon/actions/workflows/pre-commit.yaml/badge.svg)](https://github.com/lablabs/terraform-aws-eks-universal-addon/actions/workflows/pre-commit.yaml)
+ * [![Terraform validate](https://github.com/lablabs/terraform-aws-eks-kube-state-metrics/actions/workflows/validate.yaml/badge.svg)](https://github.com/lablabs/terraform-aws-eks-kube-state-metrics/actions/workflows/validate.yaml)
+ * [![pre-commit](https://github.com/lablabs/terraform-aws-eks-kube-state-metrics/workflows/pre-commit.yml/badge.svg)](https://github.com/lablabs/terraform-aws-eks-kube-state-metrics/actions/workflows/pre-commit.yml)
  */
-# FIXME config: update addon docs above
+
 locals {
-  # FIXME config: add addon configuration here
   addon = {
-    name = "universal-addon"
+    name      = "kube-state-metrics"
+    namespace = "kube-system"
 
-    helm_chart_name    = "raw"
-    helm_chart_version = "0.1.0"
-    helm_repo_url      = "https://lablabs.github.io"
-  }
-
-  # FIXME config: add addon IRSA configuration here or remove if not needed
-  addon_irsa = {
-    (local.addon.name) = {
-      # FIXME config: add default IRSA overrides here or leave empty if not needed, but make sure to keep at least one key
-    }
-  }
-
-  # FIXME config: add addon OIDC configuration here or remove if not needed
-  addon_oidc = {
-    (local.addon.name) = {
-      # FIXME config: add default OIDC overrides here or leave empty if not needed, but make sure to keep at least one key
-    }
+    helm_chart_version = "5.30.0"
+    helm_repo_url      = "https://prometheus-community.github.io/helm-charts"
   }
 
   addon_values = yamlencode({
-    # FIXME config: add default values here
   })
 }
