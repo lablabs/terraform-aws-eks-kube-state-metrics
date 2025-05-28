@@ -1,7 +1,7 @@
 <!-- BEGIN_TF_DOCS -->
-# AWS EKS kube state metrics Terraform module
+# AWS EKS Kube-state-metrics Terraform module
 
-A Terraform module to deploy a [kube-state-metrics](https://github.com/kubernetes/kube-state-metrics) on Amazon EKS cluster.
+A Terraform module to deploy the [kube-state-metrics](https://github.com/kubernetes/kube-state-metrics) on Amazon EKS cluster.
 
 [![Terraform validate](https://github.com/lablabs/terraform-aws-eks-kube-state-metrics/actions/workflows/validate.yaml/badge.svg)](https://github.com/lablabs/terraform-aws-eks-kube-state-metrics/actions/workflows/validate.yaml)
 [![pre-commit](https://github.com/lablabs/terraform-aws-eks-kube-state-metrics/workflows/pre-commit.yml/badge.svg)](https://github.com/lablabs/terraform-aws-eks-kube-state-metrics/actions/workflows/pre-commit.yml)
@@ -19,9 +19,11 @@ We help companies build, run, deploy and scale software and infrastructure by em
 ## Deployment methods
 
 ### Helm
+
 Deploy Helm chart via Helm resource (default method, set `enabled = true`)
 
 ### Argo Kubernetes
+
 Deploy Helm chart as ArgoCD Application via Kubernetes manifest resource (set `enabled = true` and `argo_enabled = true`)
 
 > **Warning**
@@ -31,11 +33,13 @@ Deploy Helm chart as ArgoCD Application via Kubernetes manifest resource (set `e
 > To overcome this issue, the module deploys the ArgoCD application object using the Helm provider, which does not require API access during plan. If you want to deploy the application using this workaround, you can set the `argo_helm_enabled` variable to `true`.
 
 ### Argo Helm
+
 Deploy Helm chart as ArgoCD Application via Helm resource (set `enabled = true`, `argo_enabled = true` and `argo_helm_enabled = true`)
 
 ## Examples
 
 See [basic example](examples/basic) for further information.
+
 ## Requirements
 
 | Name | Version |
@@ -50,14 +54,17 @@ See [basic example](examples/basic) for further information.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_addon"></a> [addon](#module\_addon) | git::https://github.com/lablabs/terraform-aws-eks-universal-addon.git//modules/addon | v0.0.18 |
+| <a name="module_addon"></a> [addon](#module\_addon) | git::<https://github.com/lablabs/terraform-aws-eks-universal-addon.git//modules/addon> | v0.0.18 |
+
 ## Resources
 
 | Name | Type |
 |------|------|
 | [utils_deep_merge_yaml.values](https://registry.terraform.io/providers/cloudposse/utils/latest/docs/data-sources/deep_merge_yaml) | data source |
+
 > [!IMPORTANT]
 > Variables defined in [variables-addon[-irsa|oidc].tf](variables-addon.tf) defaults to `null` to have them overridable by the addon configuration defined though the [`local.addon[_irsa|oidc].*`](main.tf) local variable with the default values defined in [addon[-irsa|oidc].tf](addon.tf).
+>
 ## Inputs
 
 | Name | Description | Type |
@@ -127,11 +134,13 @@ See [basic example](examples/basic) for further information.
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | The Kubernetes Namespace in which the Helm chart will be installed (required). | `string` |
 | <a name="input_settings"></a> [settings](#input\_settings) | Additional Helm sets which will be passed to the Helm chart values or Kustomize or directory configuration which will be passed to ArgoCD Application source. Defaults to `{}`. | `map(any)` |
 | <a name="input_values"></a> [values](#input\_values) | Additional YAML encoded values which will be passed to the Helm chart. Defaults to `""`. | `string` |
+
 ## Outputs
 
 | Name | Description |
 |------|-------------|
 | <a name="output_addon"></a> [addon](#output\_addon) | The addon module outputs |
+
 ## Contributing and reporting issues
 
 Feel free to create an issue in this repository if you have questions, suggestions or feature requests.
