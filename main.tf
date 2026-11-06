@@ -12,7 +12,7 @@ locals {
     name      = "kube-state-metrics"
     namespace = "kube-system"
 
-    helm_chart_version = "5.30.0"
+    helm_chart_version = "8.7.1"
     helm_repo_url      = "https://prometheus-community.github.io/helm-charts"
   }
 
